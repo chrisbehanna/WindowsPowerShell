@@ -5,7 +5,7 @@ Import-Module 'C:\dev\devshell\posh-git\src\posh-git.psd1'
 # care about 64-bit, either.  In a tabbed console, WindowTitle real estate is
 # precious, so abbreviate the WindowTitle suffix to "PS m.n (PID)"
 #
-$GitPromptSettings.WindowTitle = {param($GitStatus, [bool]$IsAdmin) "$(if ($IsAdmin) {'Admin: '})$(if ($GitStatus) {"$($GitStatus.RepoName) [$(GitStatus.Branch)]"} Else {Get-PromptPath}) ~ PS $($PSVersionTable.PSVersion.Major.ToString()).$($PSVersionTable.PSVersion.Minor.ToString()) ($PID)"}
+$GitPromptSettings.WindowTitle = {param($GitStatus, [bool]$IsAdmin) "$(if ($IsAdmin) {'Admin: '})$(if ($GitStatus) {"$($GitStatus.RepoName) [$($GitStatus.Branch)]"} else {Get-PromptPath}) ~ PS $($PSVersionTable.PSVersion.Major.ToString()).$($PSVersionTable.PSVersion.Minor.ToString()) ($PID)"}
 
 Set-PSReadLineOption -EditMode Vi
 
