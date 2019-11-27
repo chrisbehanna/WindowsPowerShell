@@ -1,5 +1,7 @@
 Import-Module 'C:\dev\devshell\posh-git\src\posh-git.psd1'
 
+$env:NEXUS_ROOT = "C:\ProgramData\nexus"
+
 #
 # I don't need the full version-fu for PowerShell in WindowTitle, and I don't
 # care about 64-bit, either.  In a tabbed console, WindowTitle real estate is
@@ -8,6 +10,10 @@ Import-Module 'C:\dev\devshell\posh-git\src\posh-git.psd1'
 $GitPromptSettings.WindowTitle = {param($GitStatus, [bool]$IsAdmin) "$(if ($IsAdmin) {'Admin: '})$(if ($GitStatus) {"$($GitStatus.RepoName) [$($GitStatus.Branch)]"} else {Get-PromptPath}) ~ PS $($PSVersionTable.PSVersion.Major.ToString()).$($PSVersionTable.PSVersion.Minor.ToString()) ($PID)"}
 
 Set-PSReadLineOption -EditMode Vi
+
+function adminsh {
+    Start-Process -Verb 'runas' -FilePath (Get-Process -Id $PID).Path
+}
 
 Function gfpo { git fetch origin --prune }
 
