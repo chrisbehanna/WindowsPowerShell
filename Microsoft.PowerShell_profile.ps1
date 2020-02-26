@@ -16,15 +16,13 @@ function adminsh {
 }
 
 Function gctag {
-    git -c author.email="v-chbeha@microsoft.com" `
-        -c author.name="Chris BeHanna"           `
+    git -c user.email="v-chbeha@microsoft.com" `
+        -c user.name="Chris BeHanna"           `
         tag
 }
 
 Function gfpo { git fetch origin --prune }
-
-Function glf { git lfs fetch }
-
+Function glf  { git lfs fetch }
 Function grup { git remote update --prune }
 
 Function wc {
