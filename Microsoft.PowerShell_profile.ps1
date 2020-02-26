@@ -15,6 +15,12 @@ function adminsh {
     Start-Process -Verb 'runas' -FilePath (Get-Process -Id $PID).Path
 }
 
+Function gctag {
+    git -c author.email="v-chbeha@microsoft.com" `
+        -c author.name="Chris BeHanna"           `
+        tag
+}
+
 Function gfpo { git fetch origin --prune }
 
 Function glf { git lfs fetch }
