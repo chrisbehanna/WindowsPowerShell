@@ -17,6 +17,10 @@ function adminsh {
 
 Function gfpo { git fetch origin --prune }
 
+Function glf { git lfs fetch }
+
+Function grup { git remote update --prune }
+
 Function wc {
     [CmdletBinding()]
     Param(
