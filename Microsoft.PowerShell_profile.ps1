@@ -38,6 +38,8 @@ Function wc {
     }
 }
 
+Set-Alias -Name vscode -Value "C:\Program Files\Microsoft VS Code\Code.exe"
+
 #
 # Example--useless when posh-git controls the window title.
 #
