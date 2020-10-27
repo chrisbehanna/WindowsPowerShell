@@ -25,6 +25,26 @@ Function gfpo { git fetch origin --prune }
 Function glf  { git lfs fetch }
 Function grup { git remote update --prune }
 
+Remove-Alias rm
+
+Function rm {
+    Param(
+        [Switch]
+        $rf = $False,
+
+        [Parameter(ValueFromRemainingArguments)]
+        $Remaining)
+
+    if ($rf -Eq $True) {
+        $RemoveArgs = @{
+            Recurse = $True;
+            Force   = $True
+        }
+    }
+
+    Remove-Item @RemoveArgs @Remaining
+}
+
 Function wc {
     [CmdletBinding()]
     Param(
