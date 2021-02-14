@@ -25,6 +25,8 @@ Function gfpo { git fetch origin --prune }
 Function glf  { git lfs fetch }
 Function grup { git remote update --prune }
 
+New-Alias -Name mvim -Value gvim
+
 Remove-Alias rm
 
 Function rm {
@@ -36,13 +38,11 @@ Function rm {
         $Remaining)
 
     if ($rf -Eq $True) {
-        $RemoveArgs = @{
-            Recurse = $True;
-            Force   = $True
-        }
+        Remove-Item -Recurse -Force @Remaining
     }
-
-    Remove-Item @RemoveArgs @Remaining
+    else {
+        Remove-Item @Remaining
+    }
 }
 
 Function wc {
