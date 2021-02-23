@@ -27,7 +27,9 @@ Function grup { git remote update --prune }
 
 New-Alias -Name mvim -Value gvim
 
-Remove-Alias rm
+if ($PSVersionTable.PSVersion.Major -ge 7) {
+    Remove-Alias rm
+}
 
 Function rm {
     Param(
