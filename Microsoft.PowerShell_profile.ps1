@@ -27,23 +27,23 @@ Function grup { git remote update --prune }
 
 New-Alias -Name mvim -Value gvim
 
-if ($PSVersionTable.PSVersion.Major -ge 7) {
+if ($PSVersionTable.PSVersion.Major -ge 7 -and $OS -eq "Windows_NT") {
     Remove-Alias rm
-}
 
-Function rm {
-    Param(
-        [Switch]
-        $rf = $False,
+    Function rm {
+        Param(
+            [Switch]
+            $rf = $False,
 
-        [Parameter(ValueFromRemainingArguments)]
-        $Remaining)
+            [Parameter(ValueFromRemainingArguments)]
+            $Remaining)
 
-    if ($rf -Eq $True) {
-        Remove-Item -Recurse -Force @Remaining
-    }
-    else {
-        Remove-Item @Remaining
+        if ($rf -Eq $True) {
+            Remove-Item -Recurse -Force @Remaining
+        }
+        else {
+            Remove-Item @Remaining
+        }
     }
 }
 
