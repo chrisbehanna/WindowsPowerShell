@@ -1,4 +1,4 @@
-Import-Module 'C:\dev\devshell\posh-git\src\posh-git.psd1'
+Import-Module "$home\.config\posh-git\src\posh-git.psd1"
 
 $env:NEXUS_ROOT = "C:\ProgramData\nexus"
 
