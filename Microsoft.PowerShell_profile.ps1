@@ -42,7 +42,7 @@ Function dirname {
     )
 
     $p = Get-Item $Path
-    Return $p.PSParentPath
+    Return $p.PSParentPath.Split('::')[1]
 }
 
 Function gctag {
