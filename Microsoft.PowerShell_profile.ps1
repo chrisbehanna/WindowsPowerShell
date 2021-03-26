@@ -15,8 +15,38 @@ function adminsh {
     Start-Process -Verb 'runas' -FilePath (Get-Process -Id $PID).Path
 }
 
+Function basename {
+    [CmdletBinding()]
+    Param(
+        [String] $Path
+    )
+
+    $p = Get-Item $Path
+    Return $p.BaseName
+}
+
+Function df {
+    [CmdletBinding()]
+    Param(
+        [String] $Path = $pwd
+    )
+
+    $p = Get-Item $Path
+    Write-Output $p.PSDrive
+}
+
+Function dirname {
+    [CmdletBinding()]
+    Param(
+        [String] $Path
+    )
+
+    $p = Get-Item $Path
+    Return $p.PSParentPath
+}
+
 Function gctag {
-    git -c user.email="v-chbeha@microsoft.com" `
+    git -c user.email="cbehanna@microsoft.com" `
         -c user.name="Chris BeHanna"           `
         tag
 }
@@ -27,6 +57,13 @@ Function grup { git remote update --prune }
 
 New-Alias -Name mvim -Value gvim
 
+#
+# Unix-like "time" command
+#
+$thisDir = $(Get-Item $profile).DirectoryName
+$time = Join-Path -Path $thisDir -ChildPath "time.ps1"
+. $time
+
 if ($PSVersionTable.PSVersion.Major -ge 7 -and $OS -eq "Windows_NT") {
     Remove-Alias rm
 
@@ -36,7 +73,8 @@ if ($PSVersionTable.PSVersion.Major -ge 7 -and $OS -eq "Windows_NT") {
             $rf = $False,
 
             [Parameter(ValueFromRemainingArguments)]
-            $Remaining)
+            $Remaining
+        )
 
         if ($rf -Eq $True) {
             Remove-Item -Recurse -Force @Remaining
@@ -47,6 +85,25 @@ if ($PSVersionTable.PSVersion.Major -ge 7 -and $OS -eq "Windows_NT") {
     }
 }
 
+#
+# For working around colorization bug when passing
+# git ls-remote | sls foo
+#
+# WIP
+#
+Function slsne {
+    [CmdletBinding()]
+    Param(
+        [Parameter(ValueFromRemainingArguments)]
+        $Remaining
+    )
+
+    Select-String -NoEmphasis @Remaining
+}
+
+#
+# WIP
+#
 Function wc {
     [CmdletBinding()]
     Param(
