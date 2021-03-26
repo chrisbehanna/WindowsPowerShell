@@ -89,16 +89,25 @@ if ($PSVersionTable.PSVersion.Major -ge 7 -and $OS -eq "Windows_NT") {
 # For working around colorization bug when passing
 # git ls-remote | sls foo
 #
-# WIP
-#
-Function slsne {
+Filter slsne {
     [CmdletBinding()]
     Param(
-        [Parameter(ValueFromRemainingArguments)]
-        $Remaining
+        [String]
+        $Pattern,
+
+        [Parameter(ValueFromPipeline=$true)]
+        $PipelineInput
     )
 
-    Select-String -NoEmphasis @Remaining
+    Begin {}
+
+    Process {
+        foreach($i in $PipelineInput) {
+            Write-Output [String]$i | Select-String -NoEmphasis -Pattern $Pattern
+        }
+    }
+
+    End {}
 }
 
 #
