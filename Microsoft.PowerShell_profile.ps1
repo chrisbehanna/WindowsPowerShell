@@ -64,7 +64,7 @@ $thisDir = $(Get-Item $profile).DirectoryName
 $time = Join-Path -Path $thisDir -ChildPath "time.ps1"
 . $time
 
-if ($PSVersionTable.PSVersion.Major -ge 7 -and $OS -eq "Windows_NT") {
+if ($PSVersionTable.PSVersion.Major -ge 7 -and $PSVersionTable.OS.Contains("Windows")) {
     Remove-Alias rm
 
     Function rm {
