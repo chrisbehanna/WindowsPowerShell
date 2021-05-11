@@ -54,6 +54,7 @@ Function gctag {
 Function gfpo { git fetch origin --prune }
 Function glf  { git lfs fetch }
 Function grup { git remote update --prune }
+Function gsuir { git submodule update --init --recursive }
 
 New-Alias -Name mvim -Value gvim
 
