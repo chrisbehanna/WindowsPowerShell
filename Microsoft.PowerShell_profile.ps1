@@ -61,9 +61,9 @@ New-Alias -Name mvim -Value gvim
 #
 # Unix-like "time" command
 #
-$thisDir = $(Get-Item $profile).DirectoryName
-$time = Join-Path -Path $thisDir -ChildPath "time.ps1"
-. $time
+#$thisDir = $(Get-Item $profile).DirectoryName
+#$time = Join-Path -Path $thisDir -ChildPath "time.ps1"
+#. $time
 
 if ($PSVersionTable.PSVersion.Major -ge 7 -and $PSVersionTable.OS.Contains("Windows")) {
     Remove-Alias rm
