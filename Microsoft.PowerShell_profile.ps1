@@ -45,6 +45,21 @@ Function dirname {
     Return $p.PSParentPath.Split('::')[1]
 }
 
+#
+# Invoke a "remote" PSSession so that if your terminal window dies, the stuff
+# running in the background does not die.  This is not as good as screen or
+# tmux, but it's *something*.  This alias creates the session.  You can just use
+# Enter-PSSession -Name with the name you gave it to reconnect to it.
+#
+Function durable {
+    [CmdletBinding()]
+    Param(
+        [Parameter(Mandatory=$True, Position=0)]
+        [String] $Name
+    )
+    Enter-PSSession -EnableNetworkAccess -Name $Name
+}
+
 Function gctag {
     git -c user.email="cbehanna@microsoft.com" `
         -c user.name="Chris BeHanna"           `
@@ -52,9 +67,27 @@ Function gctag {
 }
 
 Function gfpo { git fetch origin --prune }
-Function glf  { git lfs fetch }
-Function grup { git remote update --prune }
-Function gsuir { git submodule update --init --recursive }
+Function glf {
+    [CmdletBinding()]
+    Param(
+        [Parameter(Mandatory=$True)]
+        [String] $remote = "origin",
+
+        [Parameter(Mandatory=$True)]
+        [String] $branch = "main",
+
+        [String] $C = "."
+    )
+    git -C $C lfs fetch $remote $branch
+}
+Function grup {
+    [CmdletBinding()]
+    Param(
+        [String] $C = "."
+    )
+    git -C $C remote update --prune
+}
+Function gsuir { git submodule update --init --recursive --depth=10 }
 
 New-Alias -Name mvim -Value gvim
 
