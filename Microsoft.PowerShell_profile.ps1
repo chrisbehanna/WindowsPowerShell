@@ -82,6 +82,8 @@ Function glf {
     git -C $C lfs fetch $remote $branch
 }
 
+Function grom { git rebase origin/main }
+
 Function grup {
     [CmdletBinding()]
     Param(
