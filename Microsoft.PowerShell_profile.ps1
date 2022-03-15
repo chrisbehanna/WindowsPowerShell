@@ -67,6 +67,7 @@ Function gctag {
 }
 
 Function gfpo { git fetch origin --prune }
+
 Function glf {
     [CmdletBinding()]
     Param(
@@ -80,6 +81,7 @@ Function glf {
     )
     git -C $C lfs fetch $remote $branch
 }
+
 Function grup {
     [CmdletBinding()]
     Param(
@@ -87,6 +89,7 @@ Function grup {
     )
     git -C $C remote update --prune
 }
+
 Function gsuir { git submodule update --init --recursive --depth=10 }
 
 New-Alias -Name mvim -Value gvim
