@@ -91,6 +91,9 @@ Function gsuir { git submodule update --init --recursive --depth=10 }
 
 New-Alias -Name mvim -Value gvim
 
+New-Alias -Name vs2022      -Value "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\devenv.exe"
+New-Alias -Name vs2022debug -Value "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\VSJITDebugger.exe"
+
 #
 # Unix-like "time" command
 #
