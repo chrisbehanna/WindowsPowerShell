@@ -1,6 +1,8 @@
 Import-Module "$home\.config\posh-git\src\posh-git.psd1"
 
-$env:NEXUS_ROOT = "C:\ProgramData\nexus"
+$env:CMakeNuGetPackagePath = "C:\dev\NugetPackages"
+$env:GIT_SSH               = "C:\WINDOWS\System32\OpenSSH\ssh.exe"
+$env:NEXUS_ROOT            = "C:\ProgramData\nexus"
 
 #
 # I don't need the full version-fu for PowerShell in WindowTitle, and I don't
@@ -99,6 +101,7 @@ New-Alias -Name mvim -Value gvim
 
 New-Alias -Name vs2022      -Value "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\devenv.exe"
 New-Alias -Name vs2022debug -Value "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\VSJITDebugger.exe"
+New-Alias -Name which       -Value "Get-Command"
 
 #
 # Unix-like "time" command
