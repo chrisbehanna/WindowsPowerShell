@@ -1,6 +1,6 @@
 Import-Module "$home\.config\posh-git\src\posh-git.psd1"
 
-$env:CMakeNuGetPackagePath = "C:\dev\NugetPackages"
+$env:CMakeNuGetPackagePath = "D:\dev\NugetPackages"
 $env:GIT_SSH               = "C:\WINDOWS\System32\OpenSSH\ssh.exe"
 $env:NEXUS_ROOT            = "C:\ProgramData\nexus"
 
@@ -69,7 +69,7 @@ Function gctag {
         tag
 }
 
-Function gfpo { git fetch origin --prune }
+Function gfpo { git fetch origin --filter=blob:none --prune }
 
 Function glf {
     [CmdletBinding()]
@@ -95,7 +95,7 @@ Function grup {
     git -C $C remote update --prune
 }
 
-Function gsuir { git submodule update --init --recursive --depth=10 }
+Function gsuir { git submodule update --init --recursive --filter=blob:none }
 
 New-Alias -Name mvim -Value gvim
 
