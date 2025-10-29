@@ -69,7 +69,7 @@ Function gctag {
         tag
 }
 
-Function gfpo { git fetch origin --filter=blob:none --prune }
+Function gfpo { git fetch --filter=blob:none origin --prune }
 
 Function glf {
     [CmdletBinding()]
