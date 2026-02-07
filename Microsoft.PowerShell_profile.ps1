@@ -1,6 +1,11 @@
 Import-Module "$home\.config\posh-git\src\posh-git.psd1"
 
-$env:CMakeNuGetPackagePath = "D:\dev\NugetPackages"
+if ($IsWindows) {
+    $env:CMakeNuGetPackagePath = "D:\dev\NugetPackages"
+} else {
+    $env:CMakeNuGetPackagePath = "$HOME/.nuget"
+}
+
 $env:GIT_SSH               = "C:\WINDOWS\System32\OpenSSH\ssh.exe"
 $env:NEXUS_ROOT            = "C:\ProgramData\nexus"
 
